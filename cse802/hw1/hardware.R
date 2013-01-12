@@ -1,0 +1,5 @@
+library(ggplot2)
+hardware <- read.csv("hardware.csv")
+p <- ggplot(hardware, aes(Length, Area)) + theme_bw()
+p + geom_jitter(aes(shape=Type)) + xlab("Length (inches)") + ylab("Area (inches^2)")  + geom_segment(aes(x=0.3, y=0.2, xend=0.8, yend=0.15)) + geom_segment(aes(x=0.8, y=0.15, xend=0.2, yend=0.1)) + geom_segment(aes(x=0.5, y=0.125, xend=0.7, yend=0.05)) + geom_segment(aes(x=0.2, y=0.1, xend=0.5, yend=0.025))
+ggsave("hardware.pdf")

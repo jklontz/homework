@@ -83,8 +83,17 @@ CSE 802} %if necessary, replace with your course title
       \label{tbl:vegfeatures}
     \end{table}
   \item \textbf{What are the challenges involved in representing the vegetables, and how will the features you proposed help in overcoming these challenges?} \\
-    The challenge in representing vegetables is finding features that are invariant to orientation, illumination, and size. $Hue$ and $Area/Perimeter$ are invariant to all three of these challenges. While $Weight$ and $Area$ are not invariant to vegetable size, the dramatic size difference between green beans and broccoli still allow them to be useful.
+    The challenge in representing vegetables is finding features that are invariant to orientation, illumination, and size. $Hue$ and $area/perimeter$ are invariant to all three of these challenges. While $weight$ and $area$ are not invariant to vegetable size, the dramatic size difference between green beans and broccoli still allow them to be useful.
   \end{enumerate}
+\item \textbf{What features will be useful for separating these five classes?
+  (a) construct the pattern matrix,
+  (b) plot the distributions of these training samples for each class in the 2-dimensional feature space, and
+  (c) draw the appropriate decision boundary.} \\
+  The most useful features for separating these five classes are $length$ (longest distance between two points on the object's contour), $area$, $weight$, $intensity$ (grayscale), and $reflectance$.
+  \begin{figure}[ht]
+    \includegraphics[width=\textwidth]{hardware.pdf}
+    \caption{Hardware classification using the two most important features. Black line indicates the decision boundary.}
+  \end{figure}
 \end{enumerate}
 
  

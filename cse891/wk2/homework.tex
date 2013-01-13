@@ -1,0 +1,68 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{Week 2}%replace X with the appropriate number
+\author{Josh Klontz\\ %replace with your name
+CSE 891} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+The papers this week explore modern approaches to face detection.
+The first paper is the seminal work of Paul Viola and Michael Jones on ``Robust Real Time Face Detection'' using Haar-like features in a cascading classifier.
+The second paper by Zhang and Zhang is a review of various face detection algorithms, many of which are inspired by the work of Viola and Jones.
+\par
+The Viola \& Jones object detection framework offers three new contributions to the computer vision community.
+First, the use of the integral image which allows Haar-like features to be computed in constant time independent of scale or location.
+Second, the application of the AdaBoost learning algorithm to identify a small subset of salient features from a very large feature set.
+Third, the technique of combining classifiers in a cascading framework to allow background regions to be rejected quickly while performing more complex processing on only promising regions.
+\par
+The Zhang \& Zhang face detection survey extends the understanding of the Viola \& Jones algorithm by highlighting proposed modifications to, and alternatives of, the classic face detection approach.
+The major topics are covered in the face detection review.
+First, Haar-like features and proposed alternatives including pixel-based features, binarized features, generic linear features, statistics-based features, composite features, and shape features.
+Second, variations of the boosting learning algorithm are investigated, covering themes like how to reuse nodes, introduce asymmetric features, speed up training and testing, and detect off-pose faces.
+Finally, other schemes to face detection are presented, including the use of template matching, SVMs, neural networks, and part-based detectors.
+\par
+One of the major strengths of the Viola \& Jones detector is the speed with which it can operate. This is achieved by both extracting features in contant time (after computing the integral image) and rejecting many regions of the image quickly using a cascading classifier. As the authors point out, any algorithm that requires computing an image pyramid will necessarily be slower than their proposed approach, because a detector using a cascading classifier of Haar-like features runs in less time than the time needed to compute an image pyramid.
+\par
+A major drawback to the Viola \& Jones the detector as proposed is its inability to cope well in a multi-view face detection scenario. As Zhang \& Zhang point out, many researchers have proposed extensions to the Haar-like feature set, making the argument that the ability to extract non-symmetrical features allows for better a representation of the non-symmetrical characteristics of an off-pose face. Along similar lines, another drawback of the original detection framework is that it is difficult to extend to a multi-class detection scenario in a way that leverages mutual information between different classes.
+\par
+Arguably the major strength to the work done by Zhang \& Zhang is also its major weakness. While the paper covers a rich variety of proposed approaches for face detection, it offers little in terms of measurements indicating which approaches are better, details about how to implement the approaches, and insights regarding fruitful venues for future research in the field.
+\par
+One point of particular confusion was in section 2.1 of the Viola \& Jones paper.
+The authors suggest that an alternative motivation for the integral image comes from the ``boxlets'' work of Simard et al.
+The analogy offered is poorly explained and it is unclear what, if any, additional insight is to be drawn from it.
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}

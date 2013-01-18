@@ -2,6 +2,7 @@
  
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb}
+\usepackage{float}
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,trees} % loads some tikz extensions
  
@@ -14,7 +15,46 @@ CSE 802}
 \maketitle
 
 \begin{enumerate}
-\item
+\item \textbf{Solve the following problems from Chapter 2 of the textbook: 8, 10, 14 Parts (a), (b), and (c), 24}
+  \subitem \textbf{8. Let the conditional densities for a two-category one-dimensional problem be given by the Cauchy distribution described in Problem 7.}
+  \begin{enumerate}
+  \item \textbf{By explicit integration, check that the distributions are indeed normalized.}
+    \begin{figure}[H]
+    \begin{equation}
+      p(x|w_i) = \frac{1}{\pi b} \cdot \frac{1}{1 + (\frac{x-a_i}{b})^2}
+    \end{equation}
+    \caption{Probability density function of a Cauchy distribution.}
+    \end{figure}
+    The probability density is considered to be normalized if it integrates to 1:
+    \begin{figure}[H]
+    \begin{equation}
+    \begin{split}
+      \int_{-\infty}^{\infty} p(x|w_i) dx& = \int_{-\infty}^{\infty} \frac{1}{\pi b} \cdot \frac{1}{1 + (\frac{x-a_i}{b})^2} dx \\
+      & = \frac{1}{\pi b} \int_{-\infty}^{\infty} \frac{1}{1 + (\frac{x-a_i}{b})^2} dx
+    \end{split}
+    \end{equation}
+    Apply U-substituion:
+    \begin{equation}
+    \begin{split}
+      u& = \frac{x-a_i}{b} \\
+      & = \frac{x}{b} \cdot \frac{a_i}{b} \\
+    \frac{du}{dx}& = \frac{1}{b} \\
+    dx& = b\ du
+    \end{split}
+    \end{equation}
+    To obtain:
+    \begin{equation}
+    \begin{split}
+      \int_{-\infty}^{\infty} p(x|w_i) dx& = \frac{1}{\pi} \int_{-\infty}^{\infty} \frac{1}{1 + u^2} du \\
+      & = \frac{1}{\pi} \cdot tan^{-1}(u) |_{-\infty}^{\infty} \\
+      & = \frac{1}{\pi} (\frac{\pi}{2} - \frac{-\pi}{2}) \\
+      & = \frac{1}{\pi} \pi \\
+      & \boxed{= 1}
+    \end{split}
+    \end{equation}
+    \end{figure}
+  \end{enumerate}
+
 \end{enumerate}
  
 \end{document}

@@ -26,7 +26,6 @@ CSE 802}
     \caption{Probability density function of a Cauchy distribution.}
     \end{figure}
     The probability density is considered to be normalized if it integrates to 1:
-    \begin{figure}[H]
     \begin{equation}
     \begin{split}
       \int_{-\infty}^{\infty} p(x|w_i) dx& = \int_{-\infty}^{\infty} \frac{1}{\pi b} \cdot \frac{1}{1 + (\frac{x-a_i}{b})^2} dx \\
@@ -52,9 +51,7 @@ CSE 802}
       & \boxed{= 1}
     \end{split}
     \end{equation}
-    \end{figure}
   \item \textbf{Assuming that $P(w_1) = P(w_2)$, show that $P(w_1|x) = P(w_2|x)$ if $x = (a_1 + a_2)/2$.}
-    \begin{figure}[H]
     \begin{equation}
     \begin{split}
       P(w_1|x)& \iff P(w_2|x) \\
@@ -75,9 +72,7 @@ CSE 802}
       & \qed
     \end{split}
     \end{equation}
-    \end{figure}
   \item \textbf{Plot $P(w_1|x)$ for the case $a_1=3, a_2=5, b=1$.}
-    \begin{figure}[H]
     \begin{equation}
     \begin{split}
       P(w_1|x)& = \frac{p(x|w_1)P(w_1)}{p(x)} \\
@@ -91,11 +86,43 @@ CSE 802}
     \end{split}
     \end{equation}
     \includegraphics[width=\textwidth]{8c}
-    \end{figure}
-  \item \textbf{How do $P(w_1|x)$ and $P(w_2|x)$ behave as $x \rightarrow -\infty$ and $x \rightarrow +\infty$? Explain.}
+  \item \textbf{How do $P(w_1|x)$ and $P(w_2|x)$ behave as $x \rightarrow -\infty$ and $x \rightarrow +\infty$? Explain.} \\
     $P(w_1|x)$ and $P(w_2|x)$ approach $\frac{1}{2}$. This is because they have the same variance and their difference in means is decreasingly important as $x \rightarrow \pm \infty$.
   \end{enumerate}
-
+  \subitem{\textbf{10. Consider the following decision rule for a two-category one-dimensional problem: Decide $w_1$ if $x>\theta$; otherwise decide $w_2$.}}
+  \begin{enumerate}
+  \item \textbf{Show that the probability of error for this rule is given by}
+    \begin{equation}
+      P(error) = P(w_1)\int_{-\infty}^\theta p(x|w_1)dx + P(w_2) \int_\theta^\infty p(x|w_2)dx
+    \end{equation}
+    \begin{equation}
+    \begin{split}
+      P(error)& = \int_{-\infty}^\infty 1-p(w_{decision}|x)dx \\
+      & = \int_{-\infty}^\theta 1-p(w_2|x)dx + \int_\theta^\infty 1-p(w_1|x)dx \\
+      & = \int_{-\infty}^\theta p(w_1|x)dx + \int_\theta^\infty p(w_2|x)dx \\
+      & = \int_{-\infty}^\theta \frac{p(x|w_1)P(w_1)}{p(x)}dx + \int_\theta^\infty \frac{p(x|w_2)P(w_2)}{p(x)}dx \\
+      & = P(w_1)\int_{-\infty}^\theta \frac{p(x|w_1)}{1}dx + P(w_2)\int_\theta^\infty \frac{p(x|w_2)}{1}dx \\
+      & \boxed{= P(w_1)\int_{-\infty}^\theta p(x|w_1)dx + P(w_2) \int_\theta^\infty p(x|w_2)dx}
+    \end{split}
+    \end{equation}
+  \item \textbf{By differentiating, show that a necessary condition to minimize $P(error)$ is that $\theta$ satisfies}
+    \begin{equation}
+      p(\theta|w_1)P(w_1)=p(\theta|w_2)P(w_2)
+    \end{equation}
+    \begin{equation}
+    \begin{split}
+      \left(P(w_1)\int_{-\infty}^\theta p(x|w_1)dx + P(w_2) \int_\theta^\infty p(x|w_2)dx\right) d\theta& = 0 \\
+      P(w_1)\int_{-\infty}^\theta p(x|w_1)dxd\theta + P(w_2) \int_\theta^\infty p(x|w_2)dxd\theta& = 0 \\
+      P(w_1)(-p(\theta|w_1)) + P(w_2)(p(\theta|w_2))& = 0 \\
+      p(\theta|w_1)P(w_1)& =p(\theta|w_2)P(w_2) \\
+      & \qed
+    \end{split}
+    \end{equation}
+  \item \textbf{Does this equation satisfy $\theta$ uniquely?} \\
+    No, there may exist multiple values of theta corresponding to multiple optimal decision boundaries based on the underlying probability density functions.
+  \item \textbf{Given an example where a value of $\theta$ satisfying the equation actually \emph{maximizes} the probability of error.} \\
+    Consider the trivial case where $P(w_1)=P(w_2)$ and $p(x|w_1)=p(x|w_2)$. In this case, all values of $\theta$ maximize the probability of error.
+  \end{enumerate}
 \end{enumerate}
  
 \end{document}

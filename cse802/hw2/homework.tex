@@ -158,6 +158,36 @@ The optimal desciminant functions maximize the negative risk:
   \item \textbf{Describe qualitatively what happens as $\lambda_r/\lambda_s$ is increased from 0 to 1.} \\
   When $\lambda_r/\lambda_s = 0$ there is no cost associated with the rejection option and it should be taken every time. As $\lambda_r/\lambda_s$ increases, the size of the $g_3$ distribution shrinks with respect to $g_1$ and $g_2$, and the decision region where the rejection option should be taken becomes increasingly narrow. When $\lambda_r/\lambda_s = 1$ there is no instance where it is optimal to take the rejection option.
   \end{enumerate}
+  \subitem \textbf{24. Consider the multivariate normal density with mean $\mu$, $\sigma_{ij}=0$ and $sigma_{ii}=\sigma_i^2$}
+  \begin{enumerate}
+  \item \textbf{Show that the evidence is}
+    \begin{equation}
+      p(\mathbf{x}) = \frac{1}{\prod_{i=1}^d \sqrt{2\pi}\sigma_i} \exp\left[-\frac{1}{2}\sum_{i=1}^d\left(\frac{x_i-\mu_i}{\sigma_i}\right)^2\right]
+    \end{equation}
+    \begin{equation}
+    \begin{split}
+      p(\mathbf{x})& = \frac{1}{(2\pi)^{d/2}|\boldsymbol{\Sigma}|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^t\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right] \\
+      & = \frac{1}{(2\pi)^{d/2}(\prod_{i=1}^d\sigma_i^2)^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^t\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right] \\
+      & = \frac{1}{(2\pi)^{d/2}\prod_{i=1}^d\sigma_i} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^t\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right] \\
+      & = \frac{1}{\prod_{i=1}^d \sqrt{2\pi}\sigma_i} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^t\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right] \\
+      & = \frac{1}{\prod_{i=1}^d \sqrt{2\pi}\sigma_i} \exp\left[-\frac{1}{2}\sum_{i=1}^d\left((x_i-\mu_i) \cdot \frac{1}{\sigma_i^2} \cdot (x_i-\mu_i)\right)^2\right] \\
+      & = \frac{1}{\prod_{i=1}^d \sqrt{2\pi}\sigma_i} \exp\left[-\frac{1}{2}\sum_{i=1}^d\left(\frac{x_i-\mu_i}{\sigma_i}\right)^2\right]
+    \end{split}
+    \end{equation}
+  \item \textbf{Plot and describe the contours of constant density.}
+    \begin{figure}[H]
+      \includegraphics[width=\textwidth]{24b}
+      \caption{The contours of constant density are ellipses centered at mean $\boldsymbol{\mu}$. The ellipses are oriented parallel to the underlying vector space but the magnitude of each axis is independent.}
+    \end{figure}
+  \item \textbf{Write an expression for the Mahalanobis distance from $\mathbf{x}$ to $\boldsymbol{\mu}$.}
+    \begin{equation}
+    \begin{split}
+      r& = \sqrt{(\mathbf{x}-\boldsymbol{\mu})^t\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})} \\
+      & = \sqrt{\sum_{i=1}^d\left((x_i-\mu_i) \cdot \frac{1}{\sigma_i^2} \cdot (x_i-\mu_i)\right)^2} \\
+      & \boxed{= \sqrt{\sum_{i=1}^d\left(\frac{x_i-\mu_i}{\sigma_i}\right)^2}}
+    \end{split}
+    \end{equation}
+  \end{enumerate}
 \end{enumerate}
  
 \end{document}

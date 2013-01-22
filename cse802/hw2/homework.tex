@@ -85,7 +85,9 @@ CSE 802}
       & = \frac{x^2 - 10x + 26}{2x^2-16x+36}
     \end{split}
     \end{equation}
-    \includegraphics[width=\textwidth]{8c}
+    \begin{figure}[H]
+      \includegraphics[width=\textwidth]{8c}
+    \end{figure}
   \item \textbf{How do $P(w_1|x)$ and $P(w_2|x)$ behave as $x \rightarrow -\infty$ and $x \rightarrow +\infty$? Explain.} \\
     $P(w_1|x)$ and $P(w_2|x)$ approach $\frac{1}{2}$. This is because they have the same variance and their difference in means is decreasingly important as $x \rightarrow \pm \infty$.
   \end{enumerate}
@@ -122,6 +124,39 @@ CSE 802}
     No, there may exist multiple values of theta corresponding to multiple optimal decision boundaries based on the underlying probability density functions.
   \item \textbf{Given an example where a value of $\theta$ satisfying the equation actually \emph{maximizes} the probability of error.} \\
     Consider the trivial case where $P(w_1)=P(w_2)$ and $p(x|w_1)=p(x|w_2)$. In this case, all values of $\theta$ maximize the probability of error.
+  \end{enumerate}
+  \subitem \textbf{14. Consider the classification problem with rejection option.}
+  \begin{enumerate}
+  \item \textbf{Use the results of problem 13 to show that the following discriminant functions are optimal for such problems:}
+    \begin{equation}
+      g_i(x) = \left\{ \begin{array}{ll}p(x|w_i)P(w_i) & i = 1, ..., c \\ \frac{\lambda_s-\lambda_r}{\lambda_s}\sum_{j=1}^c p(x|w_j)P(w_j) & i = c+1 \end{array} \right.
+    \end{equation}
+The optimal desciminant functions maximize the negative risk:
+    \begin{equation}
+    \begin{split}
+      g_i(x)& = \left\{ \begin{array}{ll}-\lambda_s (1-P(w_i|x)) & i = 1, ..., c \\ -\lambda_r & i = c+1 \end{array} \right. \\
+      & = \left\{ \begin{array}{ll}-\lambda_s + \lambda_s P(w_i|x)) & i = 1, ..., c \\ -\lambda_r & i = c+1 \end{array} \right. \\
+      & = \left\{ \begin{array}{ll}\lambda_s P(w_i|x)) & i = 1, ..., c \\ \lambda_s -\lambda_r & i = c+1 \end{array} \right. \\
+      & = \left\{ \begin{array}{ll}P(w_i|x)) & i = 1, ..., c \\ \frac{\lambda_s -\lambda_r}{\lambda_s} & i = c+1 \end{array} \right. \\
+      & = \left\{ \begin{array}{ll}\frac{p(x|w_i)P(w_i)}{p(x)} & i = 1, ..., c \\ \frac{\lambda_s -\lambda_r}{\lambda_s} & i = c+1 \end{array} \right. \\
+      & = \left\{ \begin{array}{ll}p(x|w_i)P(w_i) & i = 1, ..., c \\ \frac{\lambda_s -\lambda_r}{\lambda_s}p(x) & i = c+1 \end{array} \right. \\
+      & \boxed{= \left\{ \begin{array}{ll}p(x|w_i)P(w_i) & i = 1, ..., c \\ \frac{\lambda_s-\lambda_r}{\lambda_s}\sum_{j=1}^c p(x|w_j)P(w_j) & i = c+1 \end{array} \right.}
+    \end{split}
+    \end{equation}
+  \item \textbf{Plot these disciminant functions and the decision regions for the two-category one-dimensional case having}
+    \begin{equation}
+    \begin{split}
+      g_1& = \frac{1}{2\sqrt{2\pi}}e^{-\frac{1}{2}(x-1)^2} \\
+      g_2& = \frac{1}{2\sqrt{2\pi}}e^{-\frac{1}{2}(x+1)^2} \\
+      g_3& = \frac{g_1 + g_2}{2}
+    \end{split}
+    \end{equation}
+    \begin{figure}[H]
+      \includegraphics[width=\textwidth]{14b}
+      \caption{$g_1 = blue$, $g_2 = green$, $g_3 = red$. Decision boundaries at $g_1 = g_3$ and $g_2 = g_3$.}
+    \end{figure}
+  \item \textbf{Describe qualitatively what happens as $\lambda_r/\lambda_s$ is increased from 0 to 1.} \\
+  When $\lambda_r/\lambda_s = 0$ there is no cost associated with the rejection option and it should be taken every time. As $\lambda_r/\lambda_s$ increases, the size of the $g_3$ distribution shrinks with respect to $g_1$ and $g_2$, and the decision region where the rejection option should be taken becomes increasingly narrow. When $\lambda_r/\lambda_s = 1$ there is no instance where it is optimal to take the rejection option.
   \end{enumerate}
 \end{enumerate}
  

@@ -188,6 +188,120 @@ The optimal desciminant functions maximize the negative risk:
     \end{split}
     \end{equation}
   \end{enumerate}
+\item \textbf{Consider a two-category classiﬁcation problem with two-dimensional
+feature vector $X = (x1, x2)$. The two categories are $w_1$ and $w_2$.}
+  \begin{enumerate}
+  \item \textbf{Find the maximum likelihood and Bayes decision rules. Express
+them as functions of $x_1$ and $x_2$.}
+    \begin{figure}[H]
+    \begin{equation}
+    \begin{split}
+      LR& = \frac{p(X|w_1)}{p(X|w_2)} \\
+      & = \frac{\frac{1}{(2\pi)^{d/2}|\boldsymbol{\Sigma_1}|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu_1})^t\boldsymbol{\Sigma_1}^{-1}(\mathbf{x}-\boldsymbol{\mu_1})\right]}{\frac{1}{(2\pi)^{d/2}|\boldsymbol{\Sigma_2}|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu_2})^t\boldsymbol{\Sigma_2}^{-1}(\mathbf{x}-\boldsymbol{\mu_2})\right]} \\
+      & = \frac{|\boldsymbol{\Sigma_2}|^{1/2} \exp\left[\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu_2})^t\boldsymbol{\Sigma_2}^{-1}(\mathbf{x}-\boldsymbol{\mu_2})\right]}{|\boldsymbol{\Sigma_1}|^{1/2} \exp\left[\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu_1})^t\boldsymbol{\Sigma_1}^{-1}(\mathbf{x}-\boldsymbol{\mu_1})\right]} \\
+      & = \frac{|[\begin{array}{ll}1&1\\1&2\end{array}]|^{1/2} \exp\left[\frac{1}{2}([\begin{array}{l}x_1\\x_2\end{array}]-[\begin{array}{c}1\\-2\end{array}])^t[\begin{array}{ll}1&1\\1&2\end{array}]^{-1}([\begin{array}{l}x_1\\x_2\end{array}]-[\begin{array}{c}1\\-2\end{array}])\right]}{|[\begin{array}{ll}2&1\\1&1\end{array}]|^{1/2} \exp\left[\frac{1}{2}([\begin{array}{l}x_1\\x_2\end{array}]-[\begin{array}{c}1\\2\end{array}])^t[\begin{array}{ll}2&1\\1&1\end{array}]^{-1}([\begin{array}{l}x_1\\x_2\end{array}]-[\begin{array}{c}1\\2\end{array}])\right]} \\
+      & = \frac{\exp\left[\frac{1}{2}[\begin{array}{l}x_1-1\\x_2+2\end{array}]^t[\begin{array}{cc}2&-1\\-1&1\end{array}][\begin{array}{l}x_1-1\\x_2+2\end{array}]\right]}{\exp\left[\frac{1}{2}[\begin{array}{l}x_1-1\\x_2-2\end{array}]^t[\begin{array}{cc}1&-1\\-1&2\end{array}]^{-1}[\begin{array}{l}x_1-1\\x_2-2\end{array}]\right]} \\
+      & = \frac{[\begin{array}{l}x_1-1\\x_2+2\end{array}]^t[\begin{array}{cc}2&-1\\-1&1\end{array}][\begin{array}{l}x_1-1\\x_2+2\end{array}]}{[\begin{array}{l}x_1-1\\x_2-2\end{array}]^t[\begin{array}{cc}1&-1\\-1&2\end{array}][\begin{array}{l}x_1-1\\x_2-2\end{array}]} \\
+      & = \frac{[\begin{array}{l}2x_1-x_2-4\\-x_1+x_2+3\end{array}]^t[\begin{array}{l}x_1-1\\x_2+2\end{array}]}{[\begin{array}{l}x_1-x_2+1\\-x_1+2x_2-3\end{array}]^t[\begin{array}{l}x_1-1\\x_2-2\end{array}]} \\
+      & = \frac{(2x_1-x_2-4)(x_1-1)+(-x_1+x_2+3)(x_2+2)}{(x_1-x_2+1)(x_1-1)+(-x_1+2x_2-3)(x_2-2)} \\
+      & = \frac{2x_1^2-x_1x_2-6x_1+x_2+4-x_1x_2+x_2^2+5x_2-2x_1+6}{x_1^2-x_1x_2+x_2-1-x_1x_2+2x_2^2-7x_2+2x_1+6} \\
+      & = \frac{2x_1^2+x_2^2-2x_1x_2-8x_1+6x_2+10}{x_1^2+2x_2^2-2x_1x_2+2x_1-6x_2+5} \\
+      g & = (x_1^2+2x_2^2-2x_1x_2+2x_1-6x_2+5)-(2x_1^2+x_2^2-2x_1x_2-8x_1+6x_2+10) \\
+      g & = \boxed{-x_1^2+x_2^2+10x_1-12x_2-5}
+    \end{split}
+    \end{equation}
+    \caption{Maximum likelihood decision rule: $w_2$ if $g > 0$, $w_1$ otherwise.}
+    \end{figure}
+    \begin{figure}[H]
+    \begin{equation}
+    \begin{split}
+      LR& = \frac{p(X|w_1)P(w_1)}{p(X|w_2)P(w_2)} \\
+      & ... \\
+      g & = P(w_2)(x_1^2+2x_2^2-2x_1x_2+2x_1-6x_2+5)-P(w_1)(2x_1^2+x_2^2-2x_1x_2-8x_1+6x_2+10) \\
+      g & = 0.7(x_1^2+2x_2^2-2x_1x_2+2x_1-6x_2+5)-0.3(2x_1^2+x_2^2-2x_1x_2-8x_1+6x_2+10) \\
+      g & = \boxed{0.1x_1^2+1.1x_2^2-0.8x_1x_2+3.8x_1-6x_2+0.5}
+    \end{split}
+    \end{equation}
+    \caption{Bayes decision rule: $w_2$ if $g > 0$, $w_1$ otherwise.}
+    \end{figure}
+  \item \textbf{Generate 500 patterns from each of the two class-conditional densities using the mvnrnd function in MATLAB, and plot them in the two-dimensional feature space, using the plot function. Also plot the two decision boundaries obtained in 2(a) on the same ﬁgure.}
+    \begin{figure}[H]
+      \includegraphics[width=\textwidth]{2b}
+    \end{figure}
+  \item \textbf{Generate 50 additional test patterns from each class and determine the empirical error values corresponding to the two decision boundaries.}
+    \begin{table}[H]
+    \centering
+    \begin{tabular}{lcc}
+      & Maximum Likelihood & Bayes \\
+      $w_1$ & 0\% & 2\% \\
+      $w_2$ & 0\% & 0\% \\
+    \end{tabular}
+    \caption{Empirical error rates.}
+    \end{table}
+  \item \textbf{Calculate the Bhattacharya error bound and compare the empirical error values obtained in 2(c) with the error bound.}
+    \begin{equation}
+    \begin{split}
+      k(1/2)& = 1/8(\mu_2-\mu_1)^t\left[\frac{\Sigma_1+\Sigma_2}{2}\right]^{-1}(\mu_2-\mu_1)+\frac{1}{2} \ln\frac{|\frac{\Sigma_1+\Sigma_2}{2}|}{\sqrt{|\Sigma_1||\Sigma_2|}} \\
+      & = 1/8([\begin{array}{c}1\\-2\end{array}]-[\begin{array}{c}1\\2\end{array}])^t\left[\frac{[\begin{array}{cc}2&1\\1&1\end{array}]+[\begin{array}{cc}1&1\\1&2\end{array}]}{2}\right]^{-1}([\begin{array}{c}1\\-2\end{array}]-[\begin{array}{c}1\\2\end{array}])+\frac{1}{2} \ln\frac{|\frac{[\begin{array}{cc}2&1\\1&1\end{array}]+[\begin{array}{cc}1&1\\1&2\end{array}]}{2}|}{\sqrt{|[\begin{array}{cc}2&1\\1&1\end{array}]||[\begin{array}{cc}1&1\\1&2\end{array}]|}} \\
+      & = 1/8[\begin{array}{c}0\\-4\end{array}]^t\left[\frac{[\begin{array}{cc}3&2\\2&3\end{array}]}{2}\right]^{-1}[\begin{array}{c}0\\-4\end{array}]+\frac{1}{2} \ln|\frac{[\begin{array}{cc}3&2\\2&3\end{array}]}{2}| \\
+      & = 1/8[\begin{array}{c}0\\-4\end{array}]^t[\begin{array}{cc}1.5&1\\1&1.5\end{array}]^{-1}[\begin{array}{c}0\\-4\end{array}]+\frac{1}{2} \ln|[\begin{array}{cc}1.5&1\\1&1.5\end{array}]| \\
+      & = 1/8[\begin{array}{c}0\\-4\end{array}]^t[\begin{array}{cc}1.2&-.8\\-.8&1.2\end{array}][\begin{array}{c}0\\-4\end{array}]+\frac{1}{2} \ln(1.25) \\
+      & = 1/8[\begin{array}{c}3.2\\-4.8\end{array}]^t[\begin{array}{c}0\\-4\end{array}]+.112 \\
+      & = 1/8(19.2)+.112 \\
+      & = 2.4 + .112 \\
+      & = 2.512 \\
+      P(error)& = P(w_1)P(w_2)e^{-k(1/2)} \\
+      & = 0.3 \cdot 0.7 \cdot e^{-2.512} \\
+      & \boxed{= 0.017}
+    \end{split}
+    \end{equation}
+  \end{enumerate}
+  Bhattacharya bound is tight with respect to the empirical error rates.
+\item \textbf{Construct a table defining all possible decision rules for this problem. For example, one of the possible decision rule is: If a test pattern x = 1, take action α1; if x = 2, take action α2; if x = 3,
+take action α3. Compute the posterior probabilities and ﬁnd the optimal Bayes decision rule without considering the loss function. Now compute the conditional risk for each rule. How does the optimal decision rule change when the loss function is taken into account?}
+  \begin{equation}
+  \begin{split}
+    p(x_1)& = 0.2*0.4 + 0.3*0.3 + 0.6*0.3 \\
+    & = 0.35 \\
+    p(x_2)& = 0.1*0.4 + 0.5*0.3 + 0.2*0.3 \\
+    & = 0.25 \\
+    p(x_3)& = 0.7*0.4 + 0.2*0.3 + 0.2*0.3 \\
+    & = 0.4 \\
+  \end{split}
+  \end{equation}
+  \begin{table}[H]
+  \centering
+  \begin{tabular}{ccccc}
+    & $w_1$ & $w_2$ & $w_3$ \\
+    x=1 & 0.2*0.4/0.35 & 0.3*0.3/0.35 & 0.6*0.3/0.35 \\
+    x=2 & 0.1*0.4/0.25 & 0.5*0.3/0.25 & 0.2*0.3/0.25 & \\
+    x=3 & 0.7*0.4/0.4 & 0.2*0.3/0.4 & 0.2*0.3/0.4 &
+  \end{tabular}
+  \\
+  \begin{tabular}{ccccc}
+    & $w_1$ & $w_2$ & $w_3$ \\
+    x=1 & 0.229 & 0.257 & \textbf{0.514} \\
+    x=2 & 0.16 & \textbf{0.6} & 0.24 & \\
+    x=3 & \textbf{0.7} & 0.15 & 0.15 &
+  \end{tabular}
+  \caption{Posterior probabilities with optimal Bayes decision rule shown in bold.}
+  \end{table}
+  \begin{table}[H]
+  \centering
+  \begin{tabular}{ccccc}
+    & $a_1$ & $a_2$ & $a_3$ & $a_4$ \\
+    x=1 & 0.257*2+0.514*5 & 0.229*1+0.514*1 & 0.229*3+0.257*2 & 0.229*2+0.257*3+0.514*1\\
+    x=2 & 0.6*2+0.24*5 & 0.16*1+0.24*1 & 0.16*2+0.6*3 & 0.16*2+0.6*3+0.24*1 \\
+    x=3 & 0.15*2+0.15*5 & 0.7*1+0.15*1 & 0.7*3+0.15*2 & 0.7*2+0.15*3+0.15*1
+  \end{tabular}
+  \\
+  \begin{tabular}{ccccc}
+    & $a_1$ & $a_2$ & $a_3$ & $a_4$ \\
+    x=1 & 3.084 & \textbf{0.743} & 1.201 & 1.743\\
+    x=2 & 2.4 & \textbf{0.4} & 2.12 & 2.36 \\
+    x=3 & 1.05 & \textbf{0.85} & 2.4 & 2
+  \end{tabular}
+  \caption{Conditional risk with optimal decision rule shown in bold. $w_2$ becomes the optimal decision rule for all values of $x$ because of its low risk.}
+  \end{table}
 \end{enumerate}
- 
 \end{document}

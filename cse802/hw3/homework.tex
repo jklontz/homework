@@ -73,8 +73,25 @@ CSE 802}
     \begin{figure}[H]
       \centering
       \includegraphics[width=4in]{1c}
-      \caption{$p(x|\theta)$ versus $x$ for $\theta = 1$. $\hat{\theta} = 1$}
+      \caption{$p(x|\theta)$ versus $x$ for $\theta = 1$. $\hat{\theta} = 1$.}
     \end{figure}
+  \end{enumerate}
+  \subitem \textbf{10. Suppose we employ a novel method for estimating the mean of a data set $D = \{x_1,x_2,...,x_n\}$: We assign the mean to be the value of the first point in the set, that is, $x_1$.}
+  \begin{enumerate}
+  \item \textbf{Show that this method is unbiased.} \\
+    The method is \emph{unbiased} if the expected value over all data sets of size $n$ is equal to the true mean.
+    \begin{equation}
+    \begin{split}
+      D& = \{x_1,x_2,...,x_n\} \\
+      \theta(D)& = x_1 \\
+      E(\theta(D))& = \frac{\sum_{k=0}^{n!} \theta(permutation_k(D))}{n!} \\
+      & = \frac{\sum_{i=0}^{n} x_i \cdot (n-1)!}{n \cdot (n-1)!} \\
+      & = \frac{1}{n}\sum_{i=0}^{n} x_i \\
+      & \qed
+    \end{split}
+    \end{equation}
+  \item \textbf{State why this method is nevertheless highly undesirable.} \\
+  This method is highly undesirable because the error of the method is equal to the variance of the data. A much more stable estimate of the mean can be computed by actually taking the average of all the data points.
   \end{enumerate}
 \end{enumerate}
 

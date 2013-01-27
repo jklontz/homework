@@ -10,34 +10,30 @@
  
 \maketitle
  
-The papers this week explore approaches to representing faces using active appearance models.
-The first paper is the seminal work of Cootes et al.\ on ``Active Shape Models--Their Training and Application'' using a deformable point model.
-The second paper, also by Cootes, is an extension of his technique that adds grayscale pixel dimensions into the model.
-The third paper by Matthews and Baker generalizes the notion of an Active Appearance Model by distinguishing between the various trainable model representations and the algorithms available for fitting the models to novel images.
+The papers this week explore modern alternatives to active appearance models for face alignment.
+The first paper is the work of Wu et al.\ on ``Face Alignment via Boosted Ranking Model'' which formulates face alignment as a rank-learning problem.
+The second paper, ``Principal Regression Analysis'' by Saragih, proposes alignment as a local optimization task in a subspace believed to contain the correct response.
+The third paper by Cao et al. titled, ``Face Alignment by Explicit Shape Regression'', moves away from parametric shape models entirely and demonstrates high speed and accuracy using boosted regression and a cascading learning framework.
 \par
-The Active Shape Models representation offers several new contributions to the computer vision community.
-First, Cootes demonstrates the effectiveness of Procustes analysis followed by Principal Component Analysis in representing deformable shape contours.
-The approach is able to represent viable shapes using very few orthogonal axes of deformation.
-Cootes then explains how a novel image can be fit to the model using a process of iterative refinement after an initial rough localization of the object.
-The technique is validated on a variety of model fitting challenges including resistors, hearts, hands, and worms.
+The primary advantage of the Boosted Ranking Model over an Active Appearance Model is that the alignment problem generalizes much better to faces outside the training set.
+This is accomplished by formulating the task of finding a better alignment given the current alignment in a way that is invariant to an individual's identity.
+In particular, this is accomplished by boosted learning on Haar-like features.
+The features that are chosen are the ones that best serve the task of finding a convex score function such that, in a local neighborhood, a higher score indicates an alignment closer to the optimal alignment.
 \par
-Active Appearance Models extend the classic Active Shape Models by incorporating a normalized texture model in addition to the deformable point model.
-AAMs offer several attractive advantages over ASMs.
-First, a byproduct of this "interpretation through synthesis" approach is that allows faces to be normalized for changes in expression, potentially useful for improving face recognition performance.
-Second, by incorporating texture, AAMs generally offer more accurate model fitting at the cost of a slightly slower run time.
+The Boosted Ranking Model appears to have at least the following two disadvantages. First, the authors motivate the choice of Haar-like features for their computational efficiency and their success in face-related applications. While the success of Haar-like features in face-related applications is indisputable, the nature of the alignment problem as formulated does not appear to take advantage of the computational efficiency of the feature set. The integral image trick allows Haar-like features to be extracted in constant time at different scales. However, since the face images in this paper are already scale-normalized and discarded after each iteration, it would seem that a more sophisticated, and ideally representative, feature set could be utilized with negligible impact on runtime performance. Second, while the runtime speed isn't mentioned, one wonders the computational cost of a piecewise affine warp at each iteration. Especially when the algorithm is designed to make small increments toward the optimal alignment in each step.
 \par
-The final work by Mathews and Baker rebrands the term "Active Appearance Model" to describe a more general framework for reasoning about various deformable models.
-This paper is most valuable for providing a clean logical separation between the different steps in constructing a deformable model and the independent choices that can be made at each step.
-For example, independent versus combined AAMs and radient decent versus ad-hoc fitting algorithms.
-Perhaps most notable are the specific improvements the paper proposes to AAM fitting that decrease computational complexity and improve numerical stabililty.
+Principal Regression Analysis offers a complementary approach to conventional alignment algorithms.
+The proposed approach is novel in that, unlike conventional regression, PRA does not identify the target output but rather generates a low dimensional subspace thought to contain the target.
+The low dimensional subspace can then be used as the search space by other image alignment algorithms.
+Effectively, the approach offers a ``strong prior'' that can be leveraged by subsequent algorithms.
 \par
-In the grand scheme of things, all three papers are relatively similar and consequently suffer from some of the same weaknesses.
-First, it is unclear if and how the models could be extended to incorporate advances in texture representation like Local Binary Patterns or Histograms of Oriented Gradients.
-Constructing subspaces directly from pixel intensities is becoming an increasingly outdated approach.
-Second, while the flexible inital seeding requirements of the shape models make them convenient to use directly after a coarse grained object detector, the optimization problem they pose is a daunting one.
-All solutions require a series of iterative refinements that are both computationally demanding to perform and algorithmically complex to express.
-The way the fitting problem is posed leaves very little room for a closed form solution to be invented.
-One also wonders if the fitting problem might be better tackled using a global understanding of the object, instead of the current models which can only "see" better fits if they are near the current fit.
-Belhumer et al. "Localizing Parts of Faces Using a Consensus of Exemplars", seems to provide a promising steps in this direction.
+The primary disadvantage to the approach is that PRA involves minimizing an objective function over a high-dimensional non-convex surface.
+As a result, the techniques proposed for solving the problem are highly complex and computationally demanding.
+\par
+The final work termed ``Explicit Shape Regression'' offers an alternative approach to alignment whereby instead of learning a PCA subspace of viable shapes, the regressed shape is always a linear combination of the training shapes.
+In addition to this departure from conventional approaches, the proposed approach also exhibits unusual computation efficiency and is a thousand times faster than the next most accurate approach.
+The foundation of the algorithm is cascading framework where early steps in the cascade learn rough alignment changes and later steps fine-tune the model fit.
+Random pixel-difference features are used for their computational simplicity and are selected based on their descriminability and orthogonality.
+I could identify no major objections to this approach.
  
 \end{document}

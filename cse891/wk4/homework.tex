@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\begin{document}
+ 
+\title{Week 4}
+\author{Josh Klontz\\CSE 891}
+ 
+\maketitle
+ 
+The papers this week explore approaches to representing faces using active appearance models.
+The first paper is the seminal work of Cootes et al.\ on ``Active Shape Models--Their Training and Application'' using a deformable point model.
+The second paper, also by Cootes, is an extension of his technique that adds grayscale pixel dimensions into the model.
+The third paper by Matthews and Baker generalizes the notion of an Active Appearance Model by distinguishing between the various trainable model representations and the algorithms available for fitting the models to novel images.
+\par
+The Active Shape Models representation offers several new contributions to the computer vision community.
+First, Cootes demonstrates the effectiveness of Procustes analysis followed by Principal Component Analysis in representing deformable shape contours.
+The approach is able to represent viable shapes using very few orthogonal axes of deformation.
+Cootes then explains how a novel image can be fit to the model using a process of iterative refinement after an initial rough localization of the object.
+The technique is validated on a variety of model fitting challenges including resistors, hearts, hands, and worms.
+\par
+Active Appearance Models extend the classic Active Shape Models by incorporating a normalized texture model in addition to the deformable point model.
+AAMs offer several attractive advantages over ASMs.
+First, a byproduct of this "interpretation through synthesis" approach is that allows faces to be normalized for changes in expression, potentially useful for improving face recognition performance.
+Second, by incorporating texture, AAMs generally offer more accurate model fitting at the cost of a slightly slower run time.
+\par
+The final work by Mathews and Baker rebrands the term "Active Appearance Model" to describe a more general framework for reasoning about various deformable models.
+This paper is most valuable for providing a clean logical separation between the different steps in constructing a deformable model and the independent choices that can be made at each step.
+For example, independent versus combined AAMs and radient decent versus ad-hoc fitting algorithms.
+Perhaps most notable are the specific improvements the paper proposes to AAM fitting that decrease computational complexity and improve numerical stabililty.
+\par
+In the grand scheme of things, all three papers are relatively similar and consequently suffer from some of the same weaknesses.
+First, it is unclear if and how the models could be extended to incorporate advances in texture representation like Local Binary Patterns or Histograms of Oriented Gradients.
+Constructing subspaces directly from pixel intensities is becoming an increasingly outdated approach.
+Second, while the flexible inital seeding requirements of the shape models make them convenient to use directly after a coarse grained object detector, the optimization problem they pose is a daunting one.
+All solutions require a series of iterative refinements that are both computationally demanding to perform and algorithmically complex to express.
+The way the fitting problem is posed leaves very little room for a closed form solution to be invented.
+One also wonders if the fitting problem might be better tackled using a global understanding of the object, instead of the current models which can only "see" better fits if they are near the current fit.
+Belhumer et al. "Localizing Parts of Faces Using a Consensus of Exemplars", seems to provide a promising steps in this direction.
+ 
+\end{document}

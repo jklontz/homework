@@ -93,6 +93,36 @@ CSE 802}
   \item \textbf{State why this method is nevertheless highly undesirable.} \\
   This method is highly undesirable because the error of the method is equal to the variance of the data. A much more stable estimate of the mean can be computed by actually taking the average of all the data points.
   \end{enumerate}
+\item \textbf{Consider a two-category classiﬁcation problem with two-dimensional feature vector $X=(x_1,x_2)^T$.}
+  \begin{enumerate}
+  \item \textbf{Generate 300 samples from class $w_1$ and 700 samples from class $w_2$ using the \texttt{mvnrnd} function in MATLAB, and find the ML estimate of the mean vectors and covariance matrices for each of the class conditionals using the samples.}
+    \begin{figure}[H]
+    \begin{equation}
+    \begin{split}
+      \hat{u}& = \frac{1}{n}\sum_{k=1}^nx_k \\
+      \hat{u1}& = [0.9141, 1.9753]^t \\
+      \hat{u2}& = [1.0182, -1.9893]^t \\
+      \hat{\Sigma}& = \frac{1}{n}\sum_{k=1}^n (x_k-\hat{u})(x_k-\hat{u})^t \\
+      \hat{\Sigma_1}& = \left[\begin{array}{cc}2.0145 & 1.0213 \\ 1.0213 & 0.9518\end{array}\right] \\
+      \hat{\Sigma_2}& = \left[\begin{array}{cc}1.0346 & 1.0471 \\ 1.0471 & 2.0379\end{array}\right] \\
+    \end{split}
+    \end{equation}
+    \caption{Maximum Likelihood Estimations}
+    \end{figure}
+  \item \textbf{Find the Bayes decision boundary based on the estimated distributions and compare it with the true Bayes decision boundary by plotting the samples and the two decision boundaries in two dimensional feature space.}
+    \begin{equation}
+    \begin{split}
+      g& = p(X|w_2)P(w_2) - p(X|w_1)P(w_1) \\
+      & = 0.7\cdot|\boldsymbol{\Sigma_2}|^{1/2} \exp\left[\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu_2})^t\boldsymbol{\Sigma_2}^{-1}(\mathbf{x}-\boldsymbol{\mu_2})\right] -
+ 0.3\cdot|\boldsymbol{\Sigma_1}|^{1/2} \exp\left[\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu_1})^t\boldsymbol{\Sigma_1}^{-1}(\mathbf{x}-\boldsymbol{\mu_1})\right] \\
+    \end{split}
+    \end{equation}
+  Didn't bother simplifying further, instead just plugged it into MATLAB.
+    \begin{figure}[H]
+      \includegraphics{2b}
+      \caption{The two boundaries are indistinguishable.}
+    \end{figure}
+  \end{enumerate}
 \end{enumerate}
 
 \end{document}

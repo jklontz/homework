@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\begin{document}
+ 
+\title{Week 5}
+\author{Josh Klontz\\CSE 891}
+ 
+\maketitle
+ 
+The papers this week explore Bayesian approaches to comparing faces.
+The first paper is the classic work of Moghaddam et al.\ on ``Bayesian face recognition'' which demostrates the Mahalanobis distance as more effective than euclidean distance for comparing faces.
+The second paper, ``Probabilistic Models for Inference about Identity'' by Li et al., proposes an approach for learning identity as a latent variable influenced by presentation and noise.
+The third paper by Chen et al. titled, ``Bayesian Face Revisited: A Join Formulation'', extends Moghaddam's work by considering a joint model using the likelihood ratio as the similarity metric.
+\par
+The seminal work of Moghaddam et al.\ on Bayesian face recognition presents a probabilistic measure of similarity based on a MAP analysis of image differences.
+The paper offers several benifits to the computer vision field.
+First, the proposed technique is generic enough to be used under any image matching scenario involving the difference of two real-valued vectors.
+The approach demonstrates improved accuracy and generality arising from the use of the Mahalanobis distance instead of the Euclidean distance.
+Second, the resulting score has an interpretable meaning as the probability of a genuine match given equal priors.
+Third, the authors demonstrate how the approach can be optimized so the comparison is almost as simple as a Euclidean distance.
+\par
+The Boosted Ranking Model appears to have at least the following two disadvantages. First, the authors motivate the choice of Haar-like features for their computational efficiency and their success in face-related applications. While the success of Haar-like features in face-related applications is indisputable, the nature of the alignment problem as formulated does not appear to take advantage of the computational efficiency of the feature set. The integral image trick allows Haar-like features to be extracted in constant time at different scales. However, since the face images in this paper are already scale-normalized and discarded after each iteration, it would seem that a more sophisticated, and ideally representative, feature set could be utilized with negligible impact on runtime performance. Second, while the runtime speed isn't mentioned, one wonders the computational cost of a piecewise affine warp at each iteration. Especially when the algorithm is designed to make small increments toward the optimal alignment in each step.
+\par
+Principal Regression Analysis offers a complementary approach to conventional alignment algorithms.
+The proposed approach is novel in that, unlike conventional regression, PRA does not identify the target output but rather generates a low dimensional subspace thought to contain the target.
+The low dimensional subspace can then be used as the search space by other image alignment algorithms.
+Effectively, the approach offers a ``strong prior'' that can be leveraged by subsequent algorithms.
+\par
+The primary disadvantage to the approach is that PRA involves minimizing an objective function over a high-dimensional non-convex surface.
+As a result, the techniques proposed for solving the problem are highly complex and computationally demanding.
+\par
+The final work termed ``Explicit Shape Regression'' offers an alternative approach to alignment whereby instead of learning a PCA subspace of viable shapes, the regressed shape is always a linear combination of the training shapes.
+In addition to this departure from conventional approaches, the proposed approach also exhibits unusual computation efficiency and is a thousand times faster than the next most accurate approach.
+The foundation of the algorithm is cascading framework where early steps in the cascade learn rough alignment changes and later steps fine-tune the model fit.
+Random pixel-difference features are used for their computational simplicity and are selected based on their descriminability and orthogonality.
+I could identify no major objections to this approach.
+ 
+\end{document}

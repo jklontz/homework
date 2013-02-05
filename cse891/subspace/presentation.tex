@@ -237,6 +237,75 @@ What happened to $\hat{P}_{\bar{f}}(\Delta|\Omega)$, $\epsilon^2(\Delta)$, and $
 \end{figure}
 \end{frame}
 
+\section{Probabilistic Models for Inference about Identity}
+\begin{frame}
+\frametitle{Probabilistic Models for Inference about Identity}
+\begin{block}{Abstract}
+\begin{itemize}
+\item Model the underlying causes for the presentation of a face image.
+\pause
+\item Function of both the identity (latent identity variables, or LIVs) and other causes.
+\pause
+\item Consider three increasingly sophisiticated models for face representation with two perspectives taken for each model.
+\pause
+\item Demonstrate state of the art performance for both frontal face recognition and face recognition under varying pose.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Introduction}
+\begin{block}{Motivation}
+Probabilistic match scores are easier to interpret and combine with scores from other modalities or priors.
+\end{block}
+\pause
+\begin{block}{Model Premises}
+\begin{itemize}
+\item Face images depend on several interacting factors including identity (signal), pose, illumination, and other nuisance variables.
+\pause
+\item Image generation is noisy even under good conditions.
+\pause
+\item There will always be some uncertainty in any estimate of identity.
+\pause
+\item Recognition tasks need not perform identity estimation, rather they can just answer whether two faces have the \emph{same} identity.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Overview}
+\begin{block}{General Model}
+\begin{equation}
+\mathbf{x}_{ij} = f(\mathbf{h}_i, \mathbf{w}_{ij}, \theta) + \epsilon_{ij}
+\end{equation}
+\pause
+\begin{itemize}
+\item $\mathbf{x}_{ij}$ is the vectorized data from the $j$th image of the $i$th person.
+\pause
+\item $\mathbf{h}_i$ is the LIV and is constant for every image of a person.
+\pause
+\item $\mathbf{w}_{ij}$ is another latent variable representing the viewing conditions (pose, illumination, expression, etc.).
+\pause
+\item $\theta$ is a vector of model parameters learned during the training phase.
+\pause
+\item $\epsilon_{ij}$ is a Gaussian noise term used to explain any remaining variation.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{General Model}
+\begin{block}{Two Perspectives}
+Assuming that we know the model parameters, $\theta$, how can we then identify if a gallery and probe face match?
+\end{block}
+\begin{block}{Joint Perspective}
+
+\end{block}
+\begin{block}{Class Conditional Perspective}
+
+\end{block}
+\end{frame}
+
 \begin{frame}
 \centerline{The End!}
 \end{frame}

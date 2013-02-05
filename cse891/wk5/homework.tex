@@ -35,13 +35,6 @@ There are two primary weaknesses to the paper.
 The first is that the proposed approaches lack closed form solutions, though the authors demonstrate Expectation Maximization as an effective parameter learning technique.
 The second is that the paper does not leverage modern successes in patch based feature representations, and instead demonstrates results on raw pixel intensity only.
 \par
-The primary disadvantage to the approach is that PRA involves minimizing an objective function over a high-dimensional non-convex surface.
-As a result, the techniques proposed for solving the problem are highly complex and computationally demanding.
-\par
-The final work termed ``Explicit Shape Regression'' offers an alternative approach to alignment whereby instead of learning a PCA subspace of viable shapes, the regressed shape is always a linear combination of the training shapes.
-In addition to this departure from conventional approaches, the proposed approach also exhibits unusual computation efficiency and is a thousand times faster than the next most accurate approach.
-The foundation of the algorithm is cascading framework where early steps in the cascade learn rough alignment changes and later steps fine-tune the model fit.
-Random pixel-difference features are used for their computational simplicity and are selected based on their descriminability and orthogonality.
-I could identify no major objections to this approach.
+The final work termed ``Bayesian Face Revisited: A Joint Formulation'' offers more accurate matching compared to classical Bayesian face recognition by modeling templates in a joint space rather than modeling the difference between two templates. The key motivation behind to the joint formulation is that it preserves the separability in the original feature space that can be lost by the classical Bayes formulation. Like the previous work, the learned model requires solving an expectation maximization problem which the authors observe to exhibit, ``very good 'convex' properties.'' 
  
 \end{document}

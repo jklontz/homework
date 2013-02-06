@@ -371,6 +371,37 @@ Considerably improves off-pose face recognition performance. Does not improve fr
 \end{block}
 \end{frame}
 
+\section{Bayesian Face Revisited: A Joint Formulation}
+\begin{frame}
+\frametitle{Bayesian Face Revisited: A Joint Formulation}
+\begin{block}{Abstract}
+\begin{itemize}
+\item Revist the classic Bayesian face recognition method.
+\pause
+\item Replace the "difference" formulation with a "joint" formulation.
+\pause
+\item Solve the model using EM-like learning algorithm.
+\pause
+\item Demonstrate high accuracy on Labeled Faces in the Wild (LFW).
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{General Idea}
+\begin{figure}[H]
+\centering
+\includegraphics[height=\textheight, trim=3.25in 3.4in 3.25in 5.4in, clip]{Chen2}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Naive Formulation}
+\begin{block}{Naive Model}
+Directly model the joint distribution of $\{x_1,x_2\}$ as a Gaussian.
+\end{block}
+\end{frame}
+
 \begin{frame}
 \centerline{The End!}
 \end{frame}

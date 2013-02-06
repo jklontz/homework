@@ -298,11 +298,76 @@ Probabilistic match scores are easier to interpret and combine with scores from 
 \begin{block}{Two Perspectives}
 Assuming that we know the model parameters, $\theta$, how can we then identify if a gallery and probe face match?
 \end{block}
+\pause
 \begin{block}{Joint Perspective}
-
+\begin{itemize}
+\item Infer whether two observed images $x_1$ and $x_2$ were generated from the same identity variable $h$.
+\pause
+\item Deal with uncertainty in $h$ and $w$ by considering all possible values of them. One possible value for each face in the target gallery.
+\end{itemize}
 \end{block}
+\pause
 \begin{block}{Class Conditional Perspective}
+\begin{itemize}
+\item Consider the predictive distribution for the probe image $x_p$ induced by the matching gallery data $x_g$ in each of the models.
+\pause
+\item "One shot" model generation for each gallery template.
+\end{itemize}
+\end{block}
+\end{frame}
 
+\begin{frame}
+\frametitle{Probabilistic LDA}
+\begin{block}{Probabilistic LDA}
+\begin{itemize}
+\item PLDA is to LDA as factor analysis is to PCA.
+\pause
+\item Seek directions that have maximum discriminability (signal term) while also explicitly modeling within-individual variance.
+\pause
+\item Model parameters learned using expectation maximization (EM).
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Results}
+Authors demonstrate state of the art performance on frontal face identification, clustering, and verification when compared against other recent subspace learning approaches.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mixtures of PLDAs}
+\begin{block}{Mixtures of PLDAs}
+Describe the face manifold as a weighted additive mixture of K PLDA distributions.
+\pause
+Overcomes weaknesses of PLDA:
+\pause
+\begin{itemize}
+\item Unrealistic that the face manifold is well modeled by a linear subspace.
+\pause
+\item Unlikely that the noise distribution is identical at each point in space.
+\end{itemize}
+\pause
+Clusters also learned by EM. Interestingly, when K=2, the clusters separate men from women.
+\end{block}
+\pause
+\begin{block}{Results}
+Inconclusive improvement when compared against PLDA. Hindered by a lack of training data.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tied PLDA}
+\begin{block}{Tied PLDA}
+\begin{itemize}
+\item Need a more powerful technique for matching images across large pose changes.
+\pause
+\item In "tied" models, two or more viewing conditions are compared by assuming that they have a common underlying LIV, but different generation processes.
+\pause
+\item Similar learning process to MixPLDA except with an additional M-Step in the learning process where clusters are updated using only the data known to come from these clusters.
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Results}
+Considerably improves off-pose face recognition performance. Does not improve frontal face recognition accuracy.
 \end{block}
 \end{frame}
 

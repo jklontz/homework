@@ -396,10 +396,58 @@ Considerably improves off-pose face recognition performance. Does not improve fr
 \end{frame}
 
 \begin{frame}
-\frametitle{Naive Formulation}
+\frametitle{Model Formulations}
 \begin{block}{Naive Model}
-Directly model the joint distribution of $\{x_1,x_2\}$ as a Gaussian.
+\begin{itemize}
+\item Directly model the joint distribution of $\{x_1,x_2\}$ as a Gaussian.
+\pause
+\item Moderately better than conventional Bayesian face.
+\pause
+\item Insufficient training samples to compute reliable second order statistics.
+\end{itemize}
 \end{block}
+\pause
+\begin{block}{Joint Model}
+\begin{itemize}
+\item Face representation $x = \mu + \epsilon$.
+\begin{itemize}
+\item $x$ is mean subtracted image
+\item $\mu$ is identity
+\item $\epsilon$ is face variation.
+\pause
+\item $mu$ and $\epsilon$ are assumed to be Gaussian and \emph{independent}.
+\pause
+\item Restricts the shape of the joint covariance matrix.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Observations}
+\begin{block}{Model Learning}
+Objective function appears to have very good "convex" properties as the resulting accuracy is relatively invariant to the initial parameter estimation.
+\end{block}
+\pause
+\begin{block}{Connection with metric learning}
+$(x_1-x_2)^TM(x_1-x_2)$ versus $x_1^TAx_1+x_2^TAx_2-2x_1^TGx_2$
+\end{block}
+\pause
+\begin{block}{Connection with LDA and PLDA}
+Each dimension is treated equally \emph{unlike} LDA/PLDA where the descriminiability of each new dimension decreases.
+\end{block}
+\pause
+\begin{block}{Reference Based Methods}
+Reference-based methods represent a face by its similarites to a set of reference faces. The joint model can be considered as a kind of probabilistic reference based method, with infinite references, but under Gaussian assumptions.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{figure}[H]
+\centering
+\includegraphics[height=\textheight, trim=2.25in 3.5in 2.25in 4.2in, clip]{Chen13}
+\end{figure}
 \end{frame}
 
 \begin{frame}

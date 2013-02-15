@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\begin{document}
+ 
+\title{Week 6}
+\author{Josh Klontz\\CSE 891}
+ 
+\maketitle
+ 
+The papers this week explore various approaches to feature extraction both with and without subspace learning.
+The first paper is the work of Liu and Wechsler on ``Gabor Feature Based Classification Using the Enhanced Fisher Linear Discriminant Models for Face Recognition'' which combines Gabor features with an alternate formulation of LDA to conduct accurate face recognition with very low dimensional feature vectors.
+The second paper, ``Face Description with Local Binary Patterns: Application to Face Recognition'' is the important work by Ahonen et al., that demonstrates LBP histograms as a simple and effective descriptor for face recognition.
+The third paper by Cao et al. titled, ``Face Recognition with Learning-based Descriptor'', considers learned approaches to local histogram construction that offer better uniformity compared to LBP and consequently better accuracy for an equal length descriptor.
+The final paper, ``Discriminant Image Filter Learning for Face Recognition with Local Binary Pattern Like Representation'' by Lei et al.\ considers learning a preprocessing filter designed to maximize LBP discriminability.
+\par
+The work of Liu and Wechsler approaches face recognition by applying an Enhanced Fisher linear discriminant Model (EFM) to Gabor features.
+While the work is not the first to propose either EFM or Gabor features, it is the first to combine both in the context of face recognition.
+Gabor features are desirable for their biological relevance and for the optimal trade off they make between the space and frequency domains.
+EFM outperforms conventional LDA by preserving a proper balance between the need that the selected eigenvalues account for most of the spectral energy of the raw data and the requirement that the eigenvalues of the within-class scatter matrix are not too small.
+Finally, the authors demonstrate the $L1$ norm as an effective distance measure, which has the additional advantage of being extremely efficient to compute.
+\par
+While Gabor features are indisputably important for a variety of image processing applications, the lasting relevance of EFM seems arguable.
+If the stated benefit is to ensure that the eigenvalues of the within-class scatter matrix are not too small, one wonders whether the approach is still relevant on more challenging modern face recognition datasets where there is naturally more energy in the within-class scatter matrix.
+\par
+The fundamental contribution of the work done by Ahonen et al.\ is the introduction of the LBP operator, one of the best performing texture descriptors over a wide variety of applications, to the domain of face recognition.
+The LBP pattern is a categorical feature, generally taking on one of $2^8=256$ possible values that encode the binarized pixel difference in 8 directions around a center value.
+A useful extension to LBP is the definition of uniform patterns, which are patterns that have two or fewer transitions between 0 and 1.
+Taking a histogram of the patterns has the desirable property that the histograms encode some pose invariance and can be compared using standard distance metrics.
+Perhaps the only weakness to the paper is that it doesn't demonstrate the increased accuracy and dimensionality reduction when LBP is combined with subspace learning approaches.
+\par
+The third work by Cao et al.\ considers learning approaches to computing local histograms with the goal of creating histogram bins with equal priors.
+This is contrasted with other coding schemes like LBP and HOG where certain codes tend to occur more frequently.
+The authors successfully demonstrate improved discriminability as a function of code size when compared to conventional coding schemes.
+Unfortunately the authors offer no evidence that the approach is better than a conventional encoding followed by PCA (measured in discriminability per dimension), as is done in standard practice.
+\par
+The final paper by Cao considers learning a preprocessing filter designed to maximize the discriminability of the feature encoding that follows it.
+The authors formulate the problem in terms of LDA where the desired convolution kernel is the first eigenvector of the LDA subspace.
+While the authors demonstrate the approach in conjunction with LBP, it could conceivably be applied to any local descriptor.
+Regrettably the authors don't include an image showing what the kernel actually looks like.
+\end{document}

@@ -8,3 +8,6 @@
 *.synctex.gz
 *.toc
 *.vrb
+
+# Repository specific
+cse802/hw4/raw

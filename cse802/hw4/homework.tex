@@ -55,5 +55,30 @@ S_b = \left[ \begin{array}{cc} 38.44 & 9.92 \\ 9.92 & 2.56 \end{array} \right]
 \caption{The points and the discriminant.}
 \end{figure}
 \end{enumerate}
+\item \textbf{Face Recognition!}
+\begin{enumerate}
+\item \textbf{Align the face images based on the location of the
+eyes and resize them.} \\
+Completed using OpenBR: \texttt{br -algorithm RegisterFace -enroll FERET\_100 FERET\_100\_registered}
+\item \textbf{Calculate the set of top 100 Eigenfaces and Fisherfaces; visualize
+the top 20 basis faces to see what they look like.}
+\begin{figure}[H]
+\begin{verbatim}
+function [m vecs vals] = pca(data)
+    m = zeros(size(data,1),1);
+    for i=1:size(data,1),
+        m(i) = mean(data(i,:));
+    end
+    for i=1:size(data,2),
+        data(:,i) = data(:,i)-m;
+    end
+    scatter = transpose(data)*data;
+    [vecs vals] = eig(scatter);
+    vecs = data * vecs;
+end
+\end{verbatim}
+\caption{MATLAB code for PCA.}
+\end{figure}
+\end{enumerate}
 \end{enumerate}
 \end{document}

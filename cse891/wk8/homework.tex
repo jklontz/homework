@@ -1,0 +1,23 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\begin{document}
+ 
+\title{Week 8}
+\author{Josh Klontz\\CSE 891}
+ 
+\maketitle
+ 
+The papers this week explore various approaches to measuring facial attributes and using them for face recognition.
+The first paper is the work of Parikh and Grauman on ``Relative Attributes'' which poses attribute identification as a ranking problem instead of a more typical binary classification or regression problem.
+The second paper, ``Describable Visual Attributes for Face Verification and Image Search'' is the work by Kumar et al., who build a complete system for annotating, training, and representing faces from descibable visual attributes with applications both for face verification and image retrieval.
+The final paper, ``Multi-Attribute Spaces: Calibration for Attribute Fusion and Similarity Search'' by Scheirer et al.\ tackles how individual classifier outputs can be combined to better perform searches in a multi-attribute space.
+\par
+The work of Parikh and Grauman focuses on broader image understanding problems than face recognition alone. There are two important insights in this paper. The first is that in many circumstances it is more natural to describe an image relative to other images than trying to identify absolute magnitudes of attributes associated with the image. The second contribution of this work is that the proposed formulation lends itself nicely to zero shot learning, allowing unseen classes to be represented relative to known training classes. Regrettably the authors don't go into much detail regarding the intermediate features they pass into the SVM learning step.
+\par
+The fundamental contribution of the work done by Kumar et al.\ is the demonstration that describable visual attributes can be a valuable apprach for unconstrained face recognition and face image retrieval. The authors demonstrate success using Amazon Turk for large scale image annotation and use the results to train a variety of facial attribute classifiers. Of notable interest is also how well humans perform on the inverse crop LFW images (background only) suggesting a lot of information is left unleveraged when conducting image matching by the proposed algorithms.
+\par
+The third work by Sherier et al.\ proposes an approach to combining visual attributes when searching for faces with more than one particular attribute. The use of the Weibull distribution for the task of modeling the SVM decision boundary is one of the unique elements of this paper.
+\end{document}

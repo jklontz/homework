@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\begin{document}
+ 
+\title{Week 10}
+\author{Josh Klontz\\CSE 891}
+ 
+\maketitle
+ 
+The papers this week explore various approaches to face recognition under variable pose and illumination.
+The first is the comprehensive review paper by Zhang and Gao titled ``Face Recognition across pose: A review'' which covers a broad collection of recently proposed approaches to pose invariant face recognition including general methods, 2D techniques, and 3D models.
+The second paper, ``Locally Linear Regression for Pose-Invariant Face Recognition'' by Chai et al., considers pose correction by a collection of linear mappings of local patches on the face to a frontal pose.
+The third work by Gross, Matthews, and Baker on ``Eigen Light-Fields and Face Recognition Across Pose'', proposes modeling the light-field of a head in a PCA subspace.
+The final paper, ``An efficient illumination normalization method for face recognition", by Xie and Lam introduces a local block-based illumination correction technique as a preprocessing step for eigenface-like algorithms.
+\par
+The review paper of Zhang and Gao is the most extensive survey of face recognition across pose to date.
+The paper discusses three major classes of algorithmic approaches including general face recognition techniques, 2D pose invariant techniques, and 3D model based algorithms.
+General approaches are further classified as either wholistic or local, with local approaches being slightly more tolerant to misalignment though neither exhibit strong pose invariance.
+A wide variety of algorithms are considered in the 2D pose invariant category including real view-based matching where gallery templates are provided across varying pose so as to improve likelihood of matching similarly posed templates.
+Numerous warping techniques are considered both in image space and in feature space and generally exhibit strong matching capability across minor pose changes but break down under large pose variation.
+3D models are more promising for matching across dramatic viewpoint variation though they suffer from both increased algorithmic and computational complexity.
+\par
+The fundamental contribution of the work done by Chai et al.\ is an effective approach for minor 2D pose correction.
+The authors demonstrate success using patch based regression to warp to a frontal pose.
+The algorithm is validated on the CMU PIE database and exhibits compelling visual performance.
+\par
+One of the earlier approaches to pose invariant face recognition is the work by Gross et al.\ using eigen light-fields.
+The idea is that a face, like any object, can be modeled in a 4D space that includes all possible viewpoints.
+Thie light-field space is intractably large, so the authors propose modeling it in a lower dimensional eigen subspace.
+Nearest neighbor matching is done within this eigen light-field space.
+While the approach is shown to work well in controlled enviorments, the authors point out that a lot of work remains to tackle the problem in a fully automated uncontrolled environment.
+\par
+Unlike the other papers reviewed, the last work by Xie and Lam focuses on illumination correction.
+The key contribution of their work is a local normalization approach whereby patches are normalized to zero mean and unit variance. 
+The approach is simple, computationally efficient, and provides a moderately effective preprocessing step.
+\end{document}

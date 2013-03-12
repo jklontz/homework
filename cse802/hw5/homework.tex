@@ -50,6 +50,7 @@ P &= \int \left[1-\sum_{i=1}^c P^2(w_i|x) \right]p(x)dx \\
    & \qed
 \end{split}
 \end{equation}
+\end{enumerate}
 \subitem{9.}
 \begin{equation}
 \begin{split}
@@ -82,6 +83,37 @@ m_3 &= [2.33 2] \\
 \includegraphics[width=5in]{123.png}
 \end{figure}
 \end{enumerate}
+\newpage
+\subitem{19.} \textbf{Consider the Euclidean metric in $d$ dimensions ...}
+
+A space is a metric space if for all vectors $a$, $b$, and $c$:
+\begin{equation}
+\begin{split}
+D(a,b) &\geq 0 \\
+D(a,b) &= 0 \iff a=b \\
+D(a,b) &= D(b,a) \\
+D(a,b) &+ D(b,c) \geq D(a,c) \\
+\end{split}
+\end{equation}
+We will prove that the Euclidean distance metric with scaled axes is a metric space by proving each of the four properties individually.
+\begin{equation}
+D(a,b) = \sqrt{\sum_{k=1}^d(\alpha_k x_k-\alpha_k y_k)^2}
+\end{equation}
+\begin{enumerate}
+\item Nonnegativity: $ D(x,y) \geq 0 $ \\
+From the problem definition it is assumed that $\alpha$, $x$, and $y$ are real-valued vectors. Therefore, $\alpha_k x_k-\alpha_k y_k$ is a real value for all $k$. Thus the quantity $(\alpha_k x_k-\alpha_k y_k)^2$ is greater than or equal to 0. It follows that the sum of these quantities and the square root of said sum are also greater than or equal to 0.
+\item Reflexivitiy: $ D(x,y) = 0 \iff a=b $
+\begin{itemize}
+\item $a = b \implies D(x,y) = 0$ \\
+If $a = b$ then the quantity $\alpha_k x_k-\alpha_k y_k$ is zero for all $k$. It follows that the quared sum of these quantities and the square root of said sum are also equal to 0.
+\item $a \neq b \implies D(x,y) \neq 0$ \\
+If $a \neq b$ then there exists a quantity $\alpha_k x_k-\alpha_k y_k$ that is not zero for some $k$. From the nonnegativity property already proven, it follows that the square of this term is positive and therefore the squared sum is positive and thus not equal to 0.
+\end{itemize}
+\item Symmetry: $ D(x,y) = D(y,x) $ \\
+Note that each term $(\alpha_k x_k-\alpha_k y_k)^2$ is symmetric because swapping the variables $x_k$ and $y_k$ changes the sign of the subtraction but not the value after it is squared. It follows that the sum of these values and the square root of said sum are also symmetric.
+\item Triangle Inequality: $ D(x,y) + D(y,z) \geq D(x,z) $ \\
+Let $g_{xy} = \alpha_k x_k-\alpha_k y_k$ in $\sqrt{\sum_{k=1}^dg_{xy}^2} + \sqrt{\sum_{k=1}^dg_{yz}^2} \geq \sqrt{\sum_{k=1}^dg_{xz}^2}$. From the problem statement we know that $g$ is a real valued vector and. From the non-negativity property it follows that $\sum_{k=1}^dg_{xy}^2 + \sum_{k=1}^dg_{yz}^2 \geq \sum_{k=1}^dg_{xz}^2$. Note that this is Cauchy–Schwarz inequality for vectors in an inner product space.\\
+\qed
 \end{enumerate}
 \end{enumerate}
 \end{document}

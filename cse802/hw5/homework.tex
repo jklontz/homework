@@ -178,11 +178,84 @@ error = crossval(@bayesian_classifier, fpl, 'kfold', 5)
 \end{verbatim}
 \caption{MATLAB code for Bayesian classifier.}
 \end{figure}
+\newpage
+\item Parzen window classifier
+\begin{figure}[H]
+\begin{verbatim}
+function [error_rate] = parzen_window_classifier(training, testing)
+    h = 0.5; % Change window size here
+    training_data = training(:, 1:size(training,2)-1);
+    training_labels = training(:, size(training,2));
+    testing_data = training(:, 1:size(testing,2)-1);
+    testing_labels = training(:, size(testing,2));
+    unique_labels = unique(training_labels);
+    errors = 0;
+    for index = 1:size(testing_data,1)
+        densities = [0 0 0];
+        for training_index = 1:size(training_data,1)
+            training_label = training_labels(training_index,1);
+            delta = training_data(training_index,:)-...
+                    testing_data(index,:);
+            densities(training_label) = densities(training_label) + ...
+                                        normpdf(delta*transpose(delta)/h);
+        end
+        highest_weight = 0;
+        highest_label = -1;
+        for label = 1:size(unique_labels,1)
+            if densities(label) > highest_weight
+                highest_weight = densities(label);
+                highest_label = label;
+            end
+        end
+        if (highest_label ~= testing_labels(index,:))
+            errors = errors + 1;
+        end
+    end
+    error_rate = errors / size(testing_data,1);    
+end
+\end{verbatim}
+\caption{MATLAB code for Parzen window classifier.}
+\end{figure}
+\newpage
+\item 1-NN classifier
+\begin{figure}[H]
+\begin{verbatim}
+function [error_rate] = nn_classifier(training, testing)
+    training_data = training(:, 1:size(training,2)-1);
+    training_labels = training(:, size(training,2));
+    testing_data = training(:, 1:size(testing,2)-1);
+    testing_labels = training(:, size(testing,2));
+    errors = 0;
+    for index = 1:size(testing_data,1)
+        closest_distance = realmax();
+        closest_label = -1;
+        for training_index = 1:size(training_data,1)
+            delta = training_data(training_index,:)-...
+                    testing_data(index,:);
+            distance = delta*transpose(delta);
+            if distance < closest_distance
+                closest_distance = distance;
+                closest_label = training_labels(training_index,1);
+            end
+        end
+        if (closest_label ~= testing_labels(index,:))
+            errors = errors + 1;
+        end
+    end
+    error_rate = errors / size(testing_data,1);    
+end
+\end{verbatim}
+\caption{MATLAB code for 1-NN classifier.}
+\end{figure}
 \item Error Rates
 \begin{table}[H]
 \begin{tabular}{ccc}
 Classifier & Average Error & Error Standard Deviation \\ \hline
-Bayesian & 0.03 & 0.0095 \\
+Bayesian & 0.03 & 0.01 \\
+Parzen Window (h=0.01) & 0 & 0 \\
+Parzen Window (h=0.5) & 0.048 & 0.007 \\
+Parzen Window (h=10) & 0.22 & 0.04 \\
+1-NN & 0 & 0 \\
 \end{tabular}
 \caption{Error rates for each classifier.}
 \end{table}

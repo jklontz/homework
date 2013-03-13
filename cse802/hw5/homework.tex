@@ -115,5 +115,77 @@ Note that each term $(\alpha_k x_k-\alpha_k y_k)^2$ is symmetric because swappin
 Let $g_{xy} = \alpha_k x_k-\alpha_k y_k$ in $\sqrt{\sum_{k=1}^dg_{xy}^2} + \sqrt{\sum_{k=1}^dg_{yz}^2} \geq \sqrt{\sum_{k=1}^dg_{xz}^2}$. From the problem statement we know that $g$ is a real valued vector and. From the non-negativity property it follows that $\sum_{k=1}^dg_{xy}^2 + \sum_{k=1}^dg_{yz}^2 \geq \sum_{k=1}^dg_{xz}^2$. Note that this is Cauchy–Schwarz inequality for vectors in an inner product space.\\
 \qed
 \end{enumerate}
+\newpage
+\item Fisher Iris
+\begin{enumerate}
+\item PCA
+\begin{figure}[H]
+\begin{verbatim}
+d = csvread('iris.txt')
+l = d(:,5)
+f = d(:,[1 2 3 4])
+m = mean(f)
+cf = f - repmat(m, 150, 1)
+s = transpose(cf)*cf
+[v, d] = eig(s)
+fp = cf * v(:,[3 4])
+plot(fp(:,1), fp(:,2), '.')
+\end{verbatim}
+\caption{MATLAB code to compute and plot subspace.}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=5in]{2a}
+\caption{First two eigenvalues.}
+\end{figure}
+Retained variance = 97.76\%
+\item Bayesian classifier \\
+\begin{figure}[H]
+\begin{verbatim}
+function [error_rate] = bayesian_classifier(training, testing)
+    training_data = training(:, 1:size(training,2)-1);
+    training_labels = training(:, size(training,2));
+    testing_data = training(:, 1:size(testing,2)-1);
+    testing_labels = training(:, size(testing,2));
+    unique_labels = unique(training_labels);
+    class_means = {};
+    class_covariances = {};
+    for label = 1:size(unique_labels,1)
+        class_data = training_data(training_labels==label,:);
+        class_means{label} = mean(class_data);
+        class_covariances{label} = cov(class_data);
+    end
+    errors = 0;
+    for index = 1:size(testing_data,1)
+        highest_pdf = 0;
+        highest_label = -1;
+        for label = 1:size(unique_labels,1)
+            pdf = mvnpdf(testing_data(index,:),...
+                         class_means{label},...
+                         class_covariances{label});
+            if pdf > highest_pdf
+                highest_pdf = pdf;
+                highest_label = label;
+            end
+        end
+        if (highest_label ~= testing_labels(index,:))
+            errors = errors + 1;
+        end
+    end
+    error_rate = errors / size(testing_data,1);    
+end
+error = crossval(@bayesian_classifier, fpl, 'kfold', 5)
+\end{verbatim}
+\caption{MATLAB code for Bayesian classifier.}
+\end{figure}
+\item Error Rates
+\begin{table}[H]
+\begin{tabular}{ccc}
+Classifier & Average Error & Error Standard Deviation \\ \hline
+Bayesian & 0.03 & 0.0095 \\
+\end{tabular}
+\caption{Error rates for each classifier.}
+\end{table}
+\end{enumerate}
 \end{enumerate}
 \end{document}

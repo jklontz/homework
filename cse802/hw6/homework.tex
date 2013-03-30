@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,trees} % loads some tikz extensions
+ 
+\begin{document}
+ 
+\title{Homework 6}
+\author{Josh Klontz
+CSE 802}
+ 
+\maketitle
+
+\begin{enumerate}
+\item \subitem 11. \\
+\begin{enumerate}
+\item \textbf{Show that this dichotomy is not linearly separable if $d>1$.} \\
+We will show this dichotomy by first showing it is true when $d=2$ and then show it is true when $d=n$ given it is true when $d=n-1$.
+\begin{itemize}
+\item{$d=2$:} When $d=2$ the problem becomes the classic $xor$ problem. The data points lie on the four corners of a cube with opposite corners belonging to the same class. From simple visual inspection it is clear that any line that successfully puts both both data points of one class on the same side can't put both data points of the other class on the opposite side of the line.
+\item{$d=n|d=n-1$:} Assume the best case scenario where we have found a line that separates the data in the $n$th dimension and we are free to place the line however we see fit to separate the data in the remaining $n-1$ dimensions. Unfortunately it is given that there exists no line that can separate the data in $n-1$ dimensions, therefore there exists no line that can separate the data in $n$ dimensions.
+\end{itemize}
+\item \textbf{Show that this problem can be solved by a piecewise linear matchine with $d+1$ weight vectors $w_{ij}$} \\
+We will show the problem can be solved when $d=1$ with 2 weight vectors and then show it can be solved when $d=n$ dimensions given a solution in $d=n-1$ dimensions with one additional weight vector.
+Let the discriminant function take the form
+\begin{equation}
+\begin{split}
+g(x) &= \max_{j=1,...,d/2}g_{ij}(x) \\
+g_{ij}(x) &= w^t_{ij}x+b_{ij} \\
+i &= 1,2 \\
+j &= 1,...,n_i \\
+w_{ij} &= \alpha_{ij}(1,1,...,1)^t
+\end{split}
+\end{equation}
+\begin{itemize}
+\item{$d=1$:} Observe that the following piecewise linear classifier works for $d=1$:
+\begin{equation}
+\begin{split}
+\alpha_{20} = 1, &b_{20} = 0 \\
+\alpha_{10} = 2, &b_{10} = -1 \\
+\end{split}
+\end{equation}
+\begin{table}[H]
+\centering
+\begin{tabular}{cccc}
+x & $g_1(x)$ & $g_2(x)$ & class \\
+0 & -1 & 1 & $w_2$ \\
+1 & 1 & 0 & $w_1$
+\end{tabular}
+\caption{Correctly classifying $d=1$.}
+\end{table}
+\item{$d=n|d=n-1$:} Note that given the way we've forumlated the weight vectors, $w_{ij} = \alpha_{ij}(1,1,...,1)^t$, the only value we can't correctly classify is the $d+1$ dimensional ones vector, as all other vectors are mathematically identical to vectors in the $d=n$ problem. Therefore, we introduce the following new vector that has a greater value ($2^n$) than all other existing vectors for the all ones vector and is $\leq 0$ otherwise
+\begin{equation}
+\alpha = 2^n, b = -2^n(n-1)
+\end{equation}
+and assign it to $w_1$ if $n$ is odd and $w_2$ otherwise.
+\end{itemize}
+\end{enumerate}
+\end{enumerate}
+\end{document}

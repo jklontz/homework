@@ -183,6 +183,98 @@ $\mu^\prime_s$ & $1.89mm^{-1}$ & $1.31mm^{-1}$
 \end{figure}
 \end{frame}
 
+\section{Thermal}
+\begin{frame}
+\frametitle{Thermal IR Fusion}
+\begin{block}{Abstract}
+\begin{itemize}
+\item Simultaneously aquired thermal IR and visible light images
+\item Two feature level fusion approaches
+\item Feature selection using genetic algorithm
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Thermal IR}
+\begin{itemize}
+\item Strengths
+\begin{itemize}
+\item illumination
+\item expression
+\item pose
+\item darkness
+\end{itemize}
+\item Weaknesses
+\begin{itemize}
+\item temperature changes
+\item heat patterns due to physical conditions
+\item glass
+\end{itemize}
+\end{itemize} 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Pixel-based fusion}
+\begin{itemize}
+\item Represent both VIS and IR images in a multi-scale Haar wavelet basis
+\item Fuse representations by selecting either the VIS or IR coefficient for each wavelet
+\item Use GA for coefficient selection
+\item Invert the fused representation to reconstruct the face image
+\item Apply eigenfaces 
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Feature-based fusion}
+\begin{itemize}
+\item Apply eigenfaces to learn VIS subspace and IR subspace
+\item Fuse representations by selecting either the VIS or IR coefficient for each eigenvector
+\item Use GA for coefficient selection
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pixel-based fusion}
+\begin{figure}
+\includegraphics[height=0.8\textheight]{pixelfusion}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Feature-based fusion}
+\begin{figure}
+\includegraphics[width=\textwidth]{featurefusion}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Genetic Search}
+\begin{figure}
+\includegraphics[width=\textwidth]{ga}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Eyeglasses Results}
+\begin{figure}
+\includegraphics[width=\textwidth]{eyeglassesresults}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Eyeglasses Results}
+\begin{figure}
+\includegraphics[width=\textwidth]{eyeglassesresults2}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Expression Results}
+\begin{figure}
+\includegraphics[height=0.8\textheight]{expressionresults}
+\end{figure}
+\end{frame}
+
 \begin{frame}
 \centerline{The End!}
 \end{frame}

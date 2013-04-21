@@ -73,6 +73,114 @@ Klare, Brendan, and A. Jain. "Heterogeneous face recognition using kernel protot
 \item More invariant to pose and expression
 \end{itemize}
 \end{block}
+\pause
+\begin{block}{Motivation}
+\begin{itemize}
+\item Hyperspectral effective for material identification where other sensing modalities are ineffective.
+\item The epidermal and dermal layers of the skin constitute a scattering medium.
+\item Small changes in the distribution of pigments induces significant changes in the skin's spectral reflectance.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Skin Model}
+\begin{block}{Optical Penetration Depth}
+The tissue thickness that reduces the light intensity by 37 percent of the intensity at the surface.
+\begin{equation}
+\frac{1}{\sqrt{3\mu_a\mu^\prime_s}}
+\end{equation}
+where
+\begin{equation}
+\begin{split}
+\mu_a &= \text{absorbtion coefficient} \\
+\mu^\prime_s &= \text{reduced scattering coefficient}
+\end{split}
+\end{equation}
+\begin{center}
+\begin{tabular}{c|cc}
+& Visible (550nm) & NIR (850nm) \\
+\hline
+$\mu_a$ & $0.77mm^{-1}$ & $0.02mm^{-1}$ \\
+$\mu^\prime_s$ & $1.89mm^{-1}$ & $1.31mm^{-1}$
+\end{tabular}
+\end{center}
+\emph{This leads to an optical penetration depth of 3.57mm at 850nm and 0.48mm at 550nm.}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Reflectance}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+\includegraphics[width=\textwidth]{4subjects}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+\includegraphics[width=\textwidth]{1subject}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Reflectance}
+\begin{figure}
+\includegraphics[height=0.8\textheight]{2subjects}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data Collection}
+\begin{block}{Experimental Setup}
+\begin{itemize}
+\item 200 subjects
+\item 31 spectral bands from 700nm to 1000nm
+\item 468x494 spatial resolution
+\item 10 second acqusition
+\item Two 750W halogen lamps
+\item Careful calibration using panels with known reflectance
+\end{itemize}
+\begin{figure}
+\includegraphics[width=\textwidth]{7poses}
+\end{figure}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Representation}
+\begin{block}{Enrollment}
+\begin{itemize}
+\item Manual localization of forehead, cheeks, hair, and lip.
+\item For each landmark and channel compute the mean reflectance over a 17x17 block (9x9 for lip).
+\item Normalize to unit $L_2$ norm.
+\item For each landmark, sample 5 blocks in adjacent locations.
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Comparison}
+\begin{itemize}
+\item Mahalanobis distance between descriptors, with diagonal covariance matrix.
+\item Distance between two landmarks is the minimum of the distance between the $5*5=25$ pairwise descriptors.
+\item Distance between faces is the sum of the distances between landmarks.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{figure}
+\includegraphics[width=\textwidth]{hyperspectralResults1}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{figure}
+\includegraphics[height=0.8\textheight]{hyperspectralResults2}
+\end{figure}
 \end{frame}
 
 \begin{frame}

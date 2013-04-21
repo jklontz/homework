@@ -1,0 +1,83 @@
+% A Readymade beamer presentation template
+% Version 1.1
+% Relase date: May 2, 2010
+% Released at http://www.stattler.com
+% by Rifat Jahan
+
+\documentclass{beamer}
+%\usecolortheme[named=green]{structure}
+\mode<presentation> {
+\usetheme{Madrid} % My favorite!
+%\usetheme{Boadilla} % Pretty neat, soft color.
+%\usetheme{default}
+%\usetheme{Warsaw}
+%\usetheme{Bergen} % This template has nagivation on the left
+%\usetheme{Frankfurt} % Similar to the default with an extra region at the top.
+%\usecolortheme{seahorse} % Simple and clean template
+%\usetheme{Darmstadt} % not so good
+% Uncomment the following line if you want page numbers and using Warsaw theme
+% \setbeamertemplate{footline}[page number]
+%\setbeamercovered{transparent}
+\setbeamercovered{invisible}
+% To remove the navigation symbols from the bottom of slides%
+\setbeamertemplate{navigation symbols}{} 
+}
+
+\usepackage{graphicx}
+%\usepackage{bm} 
+% For typesetting bold math (not \mathbold)
+%\logo{\includegraphics[height=0.6cm]{yourlogo.eps}}
+
+\title[Hyperspectral]{Hyperspectral Face Recognition}
+
+\author{Josh Klontz}
+%\institute[U of X]
+%{
+%University of [...] \\
+%\medskip
+%{\emph{email@domain.ca}}
+%}
+\date{\today}
+% \today will show current date. 
+% Alternatively, you can specify a date.
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Introdution}
+\begin{frame}
+\frametitle{Works Covered}
+\begin{block}{Face recognition in hyperspectral images}
+Pan, Zhihong, et al. "Face recognition in hyperspectral images." Pattern Analysis and Machine Intelligence, IEEE Transactions on 25.12 (2003): 1552-1560.
+\end{block}
+\pause
+\begin{block}{Face recognition by fusing thermal infrared and visible imagery}
+Bebis, George, et al. "Face recognition by fusing thermal infrared and visible imagery." Image and Vision Computing 24.7 (2006): 727-742.
+\end{block}
+\pause
+\begin{block}{Heterogeneous face recognition using kernel prototype similarities}
+Klare, Brendan, and A. Jain. "Heterogeneous face recognition using kernel prototype similarities." (2012): 1-1.
+\end{block}
+\end{frame}
+
+\section{Hyperspectral}
+\begin{frame}
+\frametitle{Hyperspectral}
+\begin{block}{Abstract}
+\begin{itemize}
+\item 31 channel NIR acquisition
+\item Model the subsurface tissue structure
+\item More invariant to pose and expression
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\centerline{The End!}
+\end{frame}
+
+% End of slides
+\end{document}

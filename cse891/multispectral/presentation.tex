@@ -214,6 +214,7 @@ $\mu^\prime_s$ & $1.89mm^{-1}$ & $1.31mm^{-1}$
 \end{frame}
 
 \begin{frame}
+\frametitle{Two fusion approaches}
 \begin{block}{Pixel-based fusion}
 \begin{itemize}
 \item Represent both VIS and IR images in a multi-scale Haar wavelet basis
@@ -272,6 +273,90 @@ $\mu^\prime_s$ & $1.89mm^{-1}$ & $1.31mm^{-1}$
 \frametitle{Expression Results}
 \begin{figure}
 \includegraphics[height=0.8\textheight]{expressionresults}
+\end{figure}
+\end{frame}
+
+\section{Kernel Prototypes}
+\begin{frame}
+\frametitle{Kernel Prototypes}
+\begin{block}{Abstract}
+\begin{itemize}
+\item Match across image modalities
+\item Process each face using transformations tuned for its modality
+\item Represent a face as a vector of similarities to prototype faces
+\item Learn a transformation matrix $R$ between gallery and probe prototype spaces
+\item Apply LDA using random sampling to overcome small training set size
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Motivation}
+\begin{itemize}
+\item When a subject's face can only be acquired in nighttime environments.
+\item When a verbal description is provided by a witness
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Four Heterogenous Modalities}
+\begin{figure}
+\includegraphics[width=\textwidth]{heterogeneous}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Feature Extraction}
+\begin{figure}
+\includegraphics[width=\textwidth]{featureextraction}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Prototype Representation}
+\begin{figure}
+\includegraphics[height=0.8\textheight]{prototypes}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Math}
+\begin{block}{Prototype Framework}
+Kernel prototypes
+\begin{equation}
+\begin{split}
+K^P(i,j) &= k(f(P_i), f(P_j)) \\
+K^G(i,j) &= k(f(G_i), f(G_j))
+\end{split}
+\end{equation}
+assume
+\begin{equation}
+k(f(P_i), f(P_j)) \approx k(f(G_i), f(G_j))
+\end{equation}
+which can be compensated for with
+\begin{equation}
+R = K^G \cdot (K^P)^{-1}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Random Sampling}
+\begin{figure}
+\includegraphics[height=.85\textheight]{randomsampling}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{figure}
+\includegraphics[width=\textwidth]{prototyperesults}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{figure}
+\includegraphics[width=\textwidth]{prototyperesults2}
 \end{figure}
 \end{frame}
 

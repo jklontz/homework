@@ -76,7 +76,7 @@ Klare, Brendan, and A. Jain. "Heterogeneous face recognition using kernel protot
 \pause
 \begin{block}{Motivation}
 \begin{itemize}
-\item Hyperspectral effective for material identification where other sensing modalities are ineffective.
+\item Hyperspectral data are effective for material identification where other sensing modalities are ineffective.
 \item The epidermal and dermal layers of the skin constitute a scattering medium.
 \item Small changes in the distribution of pigments induces significant changes in the skin's spectral reflectance.
 \end{itemize}
@@ -86,9 +86,9 @@ Klare, Brendan, and A. Jain. "Heterogeneous face recognition using kernel protot
 \begin{frame}
 \frametitle{Skin Model}
 \begin{block}{Optical Penetration Depth}
-The tissue thickness that reduces the light intensity by 37 percent of the intensity at the surface.
+The tissue thickness that reduces light intensity by 37 percent.
 \begin{equation}
-\frac{1}{\sqrt{3\mu_a\mu^\prime_s}}
+OPD = \frac{1}{\sqrt{3\mu_a\mu^\prime_s}}
 \end{equation}
 where
 \begin{equation}
@@ -172,6 +172,13 @@ $\mu^\prime_s$ & $1.89mm^{-1}$ & $1.31mm^{-1}$
 \begin{frame}
 \frametitle{Results}
 \begin{figure}
+\includegraphics[height=0.8\textheight]{landmarkresults}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{figure}
 \includegraphics[width=\textwidth]{hyperspectralResults1}
 \end{figure}
 \end{frame}
@@ -211,6 +218,13 @@ $\mu^\prime_s$ & $1.89mm^{-1}$ & $1.31mm^{-1}$
 \end{itemize}
 \end{itemize} 
 \end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Example Images}
+\begin{figure}
+\includegraphics[width=\textwidth]{exampleir}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -336,6 +350,7 @@ which can be compensated for with
 \begin{equation}
 R = K^G \cdot (K^P)^{-1}
 \end{equation}
+to construct a common basis for LDA
 \end{block}
 \end{frame}
 
